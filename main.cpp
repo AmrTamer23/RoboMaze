@@ -16,8 +16,8 @@ float deltatime=0;
 bool moving=0;
 Clock game;
 Clock gameclock;
-string arrayOfInteractions[100];
-string arrayOfInteractions2[100];
+string arrayOfInteractions[12];
+string arrayOfInteractions2[12];
 string path ="";
 bool Interacting = false;
 bool clicked = false;
@@ -39,13 +39,14 @@ private:
     string player_name;
     bool aborted = false;
 
-    void setInteractions2(string arr[]){
+    void setInteractions2(string arr[])
+    {
         arr[0] = "Something is wrong!, \n make it agian";
         arr[1] = "you still doing that shit! \nduhhhhh!";
         arr[2] = "SEE HOW DUMP IS HE! HAHAHAHA";
-        arr[3] = "why there's a node alone ?";
+        arr[3] = "The maze is not logically set\nAll cells must be reachable,\ntry to confuse me.";
         arr[4] = "something is not connected.";
-        arr[5] = "let me see your best at building it again.";
+        arr[5] = "let me see your best \nat building it again.";
         arr[6] = "are you good at \n building mazes? ,i don't think so.";
         arr[7] = "There is UnReachable Path.";
         arr[8] = "you built it wrong! ";
@@ -75,7 +76,7 @@ public:
         setInteractions2(interactions);
 
         // loads textures
-        frameTexture.loadFromFile(path + "textbox2 1.png");
+        frameTexture.loadFromFile(path + "images/textbox2_1.png");
         frameSprite.setTexture(frameTexture);
         frameSprite.setPosition(xPos, yPos);
         textToBeDisplayed.setPosition(frameSprite.getPosition().x - 200, frameSprite.getPosition().y - 75);
@@ -93,7 +94,7 @@ public:
         // set final scales
         frameScale = {1.29, 1.29};
 
-        arcadeClassic.loadFromFile(path + "Comicaboom.otf");
+        arcadeClassic.loadFromFile(path + "fonts/Comicaboom.otf");
         textToBeDisplayed.setFont(arcadeClassic);
         //pressSpaceToSkip.setFont(arcadeClassic);
         //pressSpaceToSkip.setString("Press Space To Skip");
@@ -108,7 +109,7 @@ public:
 private:
     int text_index = 0;
     float textTimer = 0.1;
-    float pauseTimer = 2.5;
+    float pauseTimer = 0.2;
     int flutter_timer = 20;
     bool isSkipTextShown = true;
     // properties set by user using set prop function
@@ -123,11 +124,12 @@ public:
         float scale_offset = 2;
         float descale_offset = 2;
 
-         if(finishedInteracting){
-             cout << "finished interacting\n";
+        if(finishedInteracting)
+        {
+            cout << "finished interacting\n";
         }
-         else
-             cout << "not finished interacting\n";
+        else
+            cout << "not finished interacting\n";
 
         // if the window isnt big enough yet, it gets scaled
         if (frameSprite.getScale().x < frameScale.x and frameSprite.getScale().y < frameScale.y and !deletingWindow and !aborted)
@@ -189,7 +191,8 @@ public:
     {
         aborted = true;
     }
-}seeked;
+} seeked;
+
 struct interactionWindow
 {
 private:
@@ -208,32 +211,9 @@ private:
 
     void setInteractions(string arr[])
     {
-        arr[0] = "i'm Manhattan i have made by \nAmr and Abdel-Rahman.";
-        arr[1] = "you still here , duhhhhh boring! \ngo and do something.";
-        arr[2] = "I am delighted to be here.";
-        arr[3] = "my developers are \nAmr and Abdel-Rahman.";
-        arr[4] = "Welcome again to the maze.";
-        arr[5] = "let me see your best.";
-        arr[6] = "are you good at \n building mazes?";
-        arr[7] = "I am inevitable not as you,human";
-        arr[8] = "WHO THE HELL ARE YOU, SIR?";
-        arr[9] = "";
-        arr[10] = "";
-        arr[11] = "";
-    }
-    void setInteractions2(string arr[]){
-        arr[0] = "Something is wrong!, \n make it agian";
-        arr[1] = "you still doing that shit! \nduhhhhh!";
-        arr[2] = "SEE HOW DUMP IS HE! HAHAHAHA";
-        arr[3] = "why there's a node alone ?";
-        arr[4] = "something is not connected.";
-        arr[5] = "let me see your best at building it again.";
-        arr[6] = "are you good at \n building mazes? ,i don't think so.";
-        arr[7] = "There is UnReachable Path.";
-        arr[8] = "you built it wrong! ";
-        arr[9] = "";
-        arr[10] = "";
-        arr[11] = "";
+        arr[0] = "WHO THE HELL ARE YOU, SIR? ,\n by the way let me introduce myself";
+        arr[1] = "My Name is The Labyrinthian,unlike my name says\nyou can't make me get lost,\nMy developers Abdelrahman and Amr \nmade sure of that, so good luck with that.";
+        arr[2] = "you still here , duhhhhh boring! \ngo and do something.";
     }
 
 public:
@@ -244,7 +224,7 @@ public:
     bool deletingWindow = false;
     bool isActive = false;
 
-    void interactionSetProp(string interactions[],float xPos, float yPos)
+    void interactionSetProp(string interactions[],float xPos, float yPos,int index)
     {
         text_index = 0;
         textTimer = 0.1;
@@ -257,10 +237,10 @@ public:
         setInteractions(interactions);
 
         // loads textures
-        frameTexture.loadFromFile(path + "textbox2 1.png");
+        frameTexture.loadFromFile(path + "images/textbox2_1.png");
         frameSprite.setTexture(frameTexture);
         frameSprite.setPosition(xPos, yPos);
-        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 200, frameSprite.getPosition().y - 75);
+        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 270, frameSprite.getPosition().y - 75);
         textToBeDisplayed.setFillColor(Color::Black);
         frameSprite.setOrigin(250, 250);
 
@@ -273,17 +253,16 @@ public:
         textToBeDisplayed.setScale(0.8, 0.8);
 
         // set final scales
-        frameScale = {1.29, 1.29};
+        frameScale = {1.9, 1.9};
 
-        arcadeClassic.loadFromFile(path + "Comicaboom.otf");
+        arcadeClassic.loadFromFile(path + "fonts/Comicaboom.otf");
         textToBeDisplayed.setFont(arcadeClassic);
         pressSpaceToSkip.setFont(arcadeClassic);
         pressSpaceToSkip.setString("Press Space To Skip");
         displayed_text = "";
 
         // takes a random interaction out of the interactions array
-        int randomNumb = rand() % no_of_interactions;
-        final_string ="\n" + interactions[randomNumb];
+        final_string ="\n" + interactions[index];
         textToBeDisplayed.setString(displayed_text);
     }
 
@@ -304,11 +283,6 @@ public:
     {
         float scale_offset = 2;
         float descale_offset = 2;
-
-         if(finishedInteracting)
-             cout << "finished interacting\n";
-         else
-             cout << "not finished interacting\n";
 
         // if the window isnt big enough yet, it gets scaled
         if (frameSprite.getScale().x < frameScale.x and frameSprite.getScale().y < frameScale.y and !deletingWindow and !aborted)
@@ -394,8 +368,7 @@ public:
     {
         aborted = true;
     }
-}interactionwindow1,interactionWindow2;
-
+} interactionwindow1,interactionWindow2,interactionWindow3;
 
 class Maze
 {
@@ -403,7 +376,6 @@ public:
 
     Maze(RenderWindow& window) : window(window)
     {
-
         maze.resize(SIZE, vector<bool>(SIZE, false));
         if (!wall.loadFromFile("images/wall.png"))
         {
@@ -435,17 +407,17 @@ public:
         int row = mousePos.y / CELL_SIZE;
         if (row >= 0 && row < SIZE && col >= 0 && col < SIZE)
         {
-                maze[row][col] = !maze[row][col];
+            maze[row][col] = !maze[row][col];
         }
         if(maze[row][col])
         {
             walls++;
-        }else
+        }
+        else
         {
             walls--;
         }
     }
-
 
     void draw()
     {
@@ -476,7 +448,6 @@ public:
             }
         }
     }
-
 
     // if it's wall or not
     bool isWall(int row, int col) const
@@ -544,7 +515,6 @@ public:
         return shortestPath;
     }
 
-
     bool isConnected()
     {
         int visitedc = 0;
@@ -592,9 +562,6 @@ public:
             return false;
     }
 
-
-
-
 private:
 
     vector<vector<bool>> maze;
@@ -630,7 +597,6 @@ public:
         robo.setScale(Vector2f(2.45, 2.45));
     }
 
-
     void move(vector<Vector2i>& shrtPath)
     {
         Vector2i direction;
@@ -641,43 +607,50 @@ public:
         cout<<pix_pos.x<<" "<<pix_pos.y<<" "<<deltatime<<endl;
         if(abs(position.x*CELL_SIZE-pix_pos.x)>=90)
         {
-         pix_pos.x = (position.x+direction.x)*CELL_SIZE;
-         position.x = position.x + direction.x;
-         shrtPath.erase(shrtPath.begin());
+            pix_pos.x = (position.x+direction.x)*CELL_SIZE;
+            position.x = position.x + direction.x;
+            shrtPath.erase(shrtPath.begin());
         }
         else if(abs(position.y*CELL_SIZE-pix_pos.y)>=90)
         {
-         pix_pos.y = (position.y+direction.y)*CELL_SIZE;
-         position.y = position.y + direction.y;
-         shrtPath.erase(shrtPath.begin());
+            pix_pos.y = (position.y+direction.y)*CELL_SIZE;
+            position.y = position.y + direction.y;
+            shrtPath.erase(shrtPath.begin());
         }
-        if(delay<=0){
+        if(delay<=0)
+        {
             delay=0.1;
             animation++;
             animation%=8;
         }
-        else{
+        else
+        {
             delay-=deltatime;
         }
 
-        if(direction.x==1){
+        if(direction.x==1)
+        {
             robo.setScale(Vector2f(2.45, 2.45));
-           robo.setTextureRect(IntRect(32*animation,96,32,32));
+            robo.setTextureRect(IntRect(32*animation,96,32,32));
         }
-        else if( direction.x==-1){
+        else if( direction.x==-1)
+        {
             robo.setScale(Vector2f(-2.45, 2.45));
             robo.setTextureRect(IntRect(32*animation,96,32,32));
         }
-        else if( direction.y==-1){
+        else if( direction.y==-1)
+        {
             robo.setScale(Vector2f(2.45, 2.45));
             robo.setTextureRect(IntRect(32*animation,128,32,32));
         }
-        else if( direction.y==1){
+        else if( direction.y==1)
+        {
             robo.setScale(Vector2f(2.45, 2.45));
             robo.setTextureRect(IntRect(32*animation,64,32,32));
         }
 
-        if(!shrtPath.size()){
+        if(!shrtPath.size())
+        {
             //neutral state.
             moving=false;
             animation=0;
@@ -685,12 +658,14 @@ public:
             robo.setTextureRect(IntRect(32*animation,32,32,32));
         }
     }
-    void draw(){
+    void draw()
+    {
         robo.setPosition(Vector2f((pix_pos.x+44.2), pix_pos.y+39.2));
         window.draw(robo);
     }
 
-    void rePosition(Vector2i rePos){
+    void rePosition(Vector2i rePos)
+    {
         position.x = rePos.x / CELL_SIZE;
         position.y = rePos.y / CELL_SIZE;
         pix_pos.x = position.x * CELL_SIZE;
@@ -712,21 +687,23 @@ int main()
     vector<Vector2i> shrtPath;
     Event event;
 
-        interactionwindow1.interactionSetProp(arrayOfInteractions,420, 200);
-        interactionWindow2.interactionSetProp(arrayOfInteractions,420, 400);
-        seeked.interactionSetProp(arrayOfInteractions2,430,200);
+    interactionwindow1.interactionSetProp(arrayOfInteractions,420, 200,0);
+    interactionWindow2.interactionSetProp(arrayOfInteractions,420, 300,1);
+    interactionWindow3.interactionSetProp(arrayOfInteractions,420, 400,2);
+    seeked.interactionSetProp(arrayOfInteractions2,430,200);
 
     while (window.isOpen())
     {
         deltatime=game.restart().asSeconds();
         gameclock.restart();
-        if(moving){
-        robo.move(shrtPath);
-        game.restart();
-        window.clear();
-        maze.draw();
-        robo.draw();
-        window.display();
+        if(moving)
+        {
+            robo.move(shrtPath);
+            game.restart();
+            window.clear();
+            maze.draw();
+            robo.draw();
+            window.display();
         }
         if (!interactionwindow1.finishedInteracting and !interactionWindow2.finishedInteracting)
         {
@@ -735,6 +712,10 @@ int main()
         else if (interactionwindow1.finishedInteracting and !interactionWindow2.finishedInteracting)
         {
             interactionWindow2.update(deltatime, window);
+        }
+        else
+        {
+            interactionWindow3.update(deltatime, window);
         }
 
         while (window.pollEvent(event))
@@ -771,46 +752,47 @@ int main()
                 }
                 else if(!moving)
                 {
-                    clicked=false;
+                    clicked=true;
                     cout<<"There is UnReachable Path"<<endl;
-                    seeked.draw(window);
-                    if(event.key.code == Keyboard::Enter){
-                      clicked=true;
-                      seeked.update(deltatime,window);
-                      seeked.draw(window);
-                    }
                 }
 
             }
-             if (!interactionwindow1.finishedInteracting){
-                            if (event.key.code == Keyboard::Space)
-                                interactionwindow1.abort();
+            if (!interactionwindow1.finishedInteracting)
+            {
+                if (event.key.code == Keyboard::Space)
+                    interactionwindow1.abort();
 
             }
-            if (!interactionWindow2.finishedInteracting){
-                            if (event.key.code == Keyboard::Space)
-                                interactionWindow2.abort();
+            if (!interactionWindow2.finishedInteracting)
+            {
+                if (event.key.code == Keyboard::Space)
+                    interactionWindow2.abort();
+            }
+            if (!interactionWindow3.finishedInteracting)
+            {
+                if (event.key.code == Keyboard::Space)
+                    interactionWindow3.abort();
             }
 
         }
-                if (clicked==true){
-                            seeked.update(deltatime, window);
-                            seeked.draw(window);
-                            if(seeked.finishedInteracting) {
-                                clicked = false;
-                            }
-                }
-
+        if (clicked==true)
+        {
+            seeked.update(deltatime, window);
+            seeked.draw(window);
+            if(seeked.finishedInteracting)
+            {
+                clicked = false;
+                seeked.interactionSetProp(arrayOfInteractions2,430,200);
+            }
+        }
         window.clear();
         maze.draw();
         robo.draw();
         interactionwindow1.draw(window);
         interactionWindow2.draw(window);
+        interactionWindow3.draw(window);
         seeked.draw(window);
         window.display();
     }
-
-
-
     return 0;
 }
