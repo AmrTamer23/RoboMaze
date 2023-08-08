@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include <iostream>
 #include<queue>
@@ -18,10 +19,8 @@ Clock game;
 Clock gameclock;
 string arrayOfInteractions[12];
 string arrayOfInteractions2[12];
-string path ="";
 bool Interacting = false;
 bool clicked = false;
-
 
 struct reminder
 {
@@ -39,17 +38,16 @@ private:
     string player_name;
     bool aborted = false;
 
-    void setInteractions2(string arr[])
-    {
+    void setInteractions2(string arr[]){
         arr[0] = "Something is wrong!, \n make it agian";
-        arr[1] = "you still doing that shit! \nduhhhhh!";
-        arr[2] = "SEE HOW DUMP IS HE! HAHAHAHA";
+        arr[1] = "you still doing that shit! \nduhhhhh! \ntry again";
+        arr[2] = "SEE HOW DUMP IS HE! HAHAHAHA \ntry again";
         arr[3] = "The maze is not logically set\nAll cells must be reachable,\ntry to confuse me.";
-        arr[4] = "something is not connected.";
+        arr[4] = "something is not connected,\ntry again.";
         arr[5] = "let me see your best \nat building it again.";
-        arr[6] = "are you good at \n building mazes? ,i don't think so.";
-        arr[7] = "There is UnReachable Path.";
-        arr[8] = "you built it wrong! ";
+        arr[6] = "are you good at \nbuilding mazes? ,i don't think so.\ntry again";
+        arr[7] = "There is UnReachable Path,try again.";
+        arr[8] = "you built it wrong!\ntry again";
         arr[9] = "";
         arr[10] = "";
         arr[11] = "";
@@ -76,10 +74,10 @@ public:
         setInteractions2(interactions);
 
         // loads textures
-        frameTexture.loadFromFile(path + "images/textbox2_1.png");
+        frameTexture.loadFromFile("images/textbox.png");
         frameSprite.setTexture(frameTexture);
         frameSprite.setPosition(xPos, yPos);
-        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 200, frameSprite.getPosition().y - 75);
+        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 212, frameSprite.getPosition().y - 110);
         textToBeDisplayed.setFillColor(Color::Black);
         frameSprite.setOrigin(250, 250);
 
@@ -92,9 +90,9 @@ public:
         textToBeDisplayed.setScale(0.8, 0.8);
 
         // set final scales
-        frameScale = {1.29, 1.29};
+        frameScale = {1.2, 1.2};
 
-        arcadeClassic.loadFromFile(path + "fonts/Comicaboom.otf");
+        arcadeClassic.loadFromFile("fonts/Comicaboom.otf");
         textToBeDisplayed.setFont(arcadeClassic);
         //pressSpaceToSkip.setFont(arcadeClassic);
         //pressSpaceToSkip.setString("Press Space To Skip");
@@ -124,12 +122,11 @@ public:
         float scale_offset = 2;
         float descale_offset = 2;
 
-        if(finishedInteracting)
-        {
-            cout << "finished interacting\n";
+         if(finishedInteracting){
+             cout << "finished interacting\n";
         }
-        else
-            cout << "not finished interacting\n";
+         else
+             cout << "not finished interacting\n";
 
         // if the window isnt big enough yet, it gets scaled
         if (frameSprite.getScale().x < frameScale.x and frameSprite.getScale().y < frameScale.y and !deletingWindow and !aborted)
@@ -191,7 +188,7 @@ public:
     {
         aborted = true;
     }
-} seeked;
+}seeked;
 
 struct interactionWindow
 {
@@ -211,13 +208,12 @@ private:
 
     void setInteractions(string arr[])
     {
-        arr[0] = "WHO THE HELL ARE YOU, SIR? ,\n by the way let me introduce myself";
-        arr[1] = "My Name is The Labyrinthian,unlike my name says\nyou can't make me get lost,\nMy developers Abdelrahman and Amr \nmade sure of that, so good luck with that.";
+        arr[0] = "Welcome to the game! here everything is\ndifferent,you can't beat me as well.\nby the way let me introduce myself...";
+        arr[1] = "My Name is The Labyrinthian,unlike my name says\nyou can't make me get lost,\nMy developrs Abdelrahman and Amr \nmade sure of that, so good luck with that.";
         arr[2] = "you still here , duhhhhh boring! \ngo and do something.";
     }
 
 public:
-    int no_of_interactions = 6;
     float timer_per_letter = 0.1;
 
     bool finishedInteracting = false;
@@ -237,10 +233,10 @@ public:
         setInteractions(interactions);
 
         // loads textures
-        frameTexture.loadFromFile(path + "images/textbox2_1.png");
+        frameTexture.loadFromFile("images/textbox.png");
         frameSprite.setTexture(frameTexture);
         frameSprite.setPosition(xPos, yPos);
-        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 270, frameSprite.getPosition().y - 75);
+        textToBeDisplayed.setPosition(frameSprite.getPosition().x - 280, frameSprite.getPosition().y - 120);
         textToBeDisplayed.setFillColor(Color::Black);
         frameSprite.setOrigin(250, 250);
 
@@ -253,9 +249,9 @@ public:
         textToBeDisplayed.setScale(0.8, 0.8);
 
         // set final scales
-        frameScale = {1.9, 1.9};
+        frameScale = {1.5, 1.5};
 
-        arcadeClassic.loadFromFile(path + "fonts/Comicaboom.otf");
+        arcadeClassic.loadFromFile("fonts/Comicaboom.otf");
         textToBeDisplayed.setFont(arcadeClassic);
         pressSpaceToSkip.setFont(arcadeClassic);
         pressSpaceToSkip.setString("Press Space To Skip");
@@ -368,7 +364,7 @@ public:
     {
         aborted = true;
     }
-} interactionwindow1,interactionWindow2,interactionWindow3;
+}interactionwindow1,interactionWindow2,interactionWindow3;
 
 class Maze
 {
@@ -385,16 +381,6 @@ public:
         if (!path.loadFromFile("images/path.png"))
         {
             cout << "Failed to load path texture." << endl;
-            return;
-        }
-        if (!startPointTex.loadFromFile("images/startpoint.png"))
-        {
-            cout << "Failed to load start point texture." << endl;
-            return;
-        }
-        if (!endPointTex.loadFromFile("images/endpoint.png"))
-        {
-            cout << "Failed to load end point texture." << endl;
             return;
         }
         startPos = Vector2i(0, 0);
@@ -581,6 +567,7 @@ public:
 
     Vector2i position;
     Vector2f pix_pos;
+    Music musicstart;
 
     Robo(RenderWindow& window, const Maze& maze)
         :window(window), maze(maze), position(0, 0)
@@ -595,6 +582,19 @@ public:
         robo.setTextureRect(IntRect(32*animation,32,32,32));
         robo.setOrigin(16,16);
         robo.setScale(Vector2f(2.45, 2.45));
+
+        if (!soundBuffer.loadFromFile("audio/LabyArrived.wav"))
+        {
+            cout << "Failed to load sound." << endl;
+            return;
+        }
+
+        musicstart.openFromFile("audio/lastofus.wav");
+        musicstart.setVolume(60);
+        sound.setBuffer(soundBuffer);
+        musicstart.play();
+        musicstart.setLoop(true);
+
     }
 
     void move(vector<Vector2i>& shrtPath)
@@ -656,6 +656,13 @@ public:
             animation=0;
             robo.setScale(Vector2f(2.45, 2.45));
             robo.setTextureRect(IntRect(32*animation,32,32,32));
+
+            if (position.x == 9 && position.y == 9)
+            {
+
+                musicstart.setVolume(10);
+                sound.play();
+            }
         }
     }
     void draw()
@@ -671,16 +678,17 @@ public:
         pix_pos.x = position.x * CELL_SIZE;
         pix_pos.y = position.y * CELL_SIZE;
     }
-
 private:
     RenderWindow& window;
     const Maze& maze;
     Texture roboTex;
     Sprite robo;
+    SoundBuffer soundBuffer;
+    Sound sound;
 };
 int main()
 {
-    RenderWindow window(VideoMode(SIZE * CELL_SIZE, SIZE * CELL_SIZE), "RoboMaze");
+    RenderWindow window(VideoMode(SIZE * CELL_SIZE, SIZE * CELL_SIZE), "The Labyrinthian");
 
     Maze maze(window);
     Robo robo(window, maze);
@@ -739,6 +747,7 @@ int main()
                     int row = mousePos.y / CELL_SIZE;
                     if (!maze.isWall(row, col))
                         robo.rePosition(mousePos);
+                     robo.musicstart.setVolume(60);
                 }
             }
             else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Enter)
