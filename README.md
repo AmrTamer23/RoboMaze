@@ -7,6 +7,7 @@ Welcome to The Labyrinthian Maze Solver project, developed by Abdelrahman Mostaf
 1. [Overview](#overview)
 2. [Features](#features)
 3. [Prerequisites](#prerequisites)
+4. [Video](#video)
 
    
 ## Overview
@@ -27,3 +28,9 @@ Before using The Labyrinthian, make sure you have the following prerequisites:
 
 - C++ compiler
 - SFML library
+
+## Video
+
+https://github.com/AmrTamer23/The-Labyrinthian/assets/122938074/7d21bbbb-ed4c-4ef2-98f3-b0aa9a30e3c5
+
+
