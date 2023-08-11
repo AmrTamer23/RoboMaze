@@ -21,6 +21,11 @@ The Labyrinthian Maze Solver is designed to provide an interactive environment f
 - Shortest path calculation using a breadth-first search algorithm.
 - Interactive dialog windows to guide user interactions.
 - Sound effects and music to enhance the user experience.
+- Interaction with the program:
+   - Left-click to add/remove walls in the maze.
+   - Right-click to reposition the robot.
+   - Press Enter to initiate the maze-solving process.
+   - Press Space to skip dialog windows.
 
 ## Prerequisites
 
