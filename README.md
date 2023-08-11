@@ -1,6 +1,6 @@
 # The Labyrinthian
 
-Welcome to The Labyrinthian Maze Solver project, developed by Abdelrahman Mostafa and Amr Tamer. This C++ program utilizes the SFML library to visualize and solve mazes. The solver employs a breadth-first search algorithm to find the shortest path from the maze's start to end.
+Welcome to The Labyrinthian Maze Solver project, developed by [Abdelrahman Mostafa](https://github.com/AbdelrahmanMoustafa) and Amr Tamer. This C++ program utilizes the SFML library to visualize and solve mazes. The solver employs a breadth-first search algorithm to find the shortest path from the maze's start to end.
 
 ## Table of Contents
 
